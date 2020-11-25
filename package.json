@@ -18,9 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "pre:build": "rimraf ./build || true",
-    "predeploy": "npm run build",
-    "ghp:build": "gh-pages -d build",
-    "deploy": "npm-run-all -l -s pre:build predeploy ghp:build",
+    "predeploy": "npm-run-all -l -s pre:build build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
