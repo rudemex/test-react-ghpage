@@ -20,10 +20,12 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - uses: fusion-engineering/setup-git-credentials@v2
-        with:
-          credentials: ${{secrets.GIT_CREDENTIALS}}
       - uses: actions/checkout@v2
+      - uses: fusion-engineering/setup-git-credentials@v2
+          with:
+            credentials: ${{secrets.GIT_CREDENTIALS}}
+      - run: git config --global user.email "mdelgado@baufest.com"
+      - run: git config --global user.name "Maximiliano Delgado"
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
