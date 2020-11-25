@@ -9,7 +9,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>or not 2</p>
+        <p>or not 3</p>
         <a
           className="App-link"
           href="https://reactjs.org"
