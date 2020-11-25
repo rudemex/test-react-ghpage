@@ -22,14 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "📦 Install dependencies"
-        run: npm install
-      - name: "💾 Cache dependencies"
+      - name: "💾 Restore node_modules from cache"
         uses: actions/cache@v2
         with:
           path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: "📦 Install dependencies"
+          run: npm install
       - name: "👨‍💻 Run the tests and generate coverage report"
         run: npm test -- --coverage
       - name: "📊 Upload coverage to Codecov"
