@@ -37,3 +37,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.GIT_CREDENTIALS }}
           repository: ${{ github.repository }}
+      - name: "🏷 Create release"
+          uses: Roang-zero1/github-create-release-action@master
+          with:
+            version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
