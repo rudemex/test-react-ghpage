@@ -20,9 +20,6 @@ jobs:
   build:
     needs: setup
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ${{ matrix.node-version }}
     steps:
       - uses: actions/checkout@v2
       - name: "📦 Install dependencies"
