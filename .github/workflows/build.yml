@@ -23,12 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: "💾 Restore node_modules from cache"
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          uses: actions/cache@v2
+          with:
+            path: |
+              node_modules
+              */*/node_modules
+            key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: "📦 Install dependencies"
         run: npm install
       - name: "👨‍💻 Run the tests and generate coverage report"
