@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: fusion-engineering/setup-git-credentials@v2
+      - uses: peaceiris/actions-gh-pages@v3
         with:
-          credentials: ${{secrets.GIT_CREDENTIALS}}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - run: git config --global user.email "mdelgado@baufest.com"
       - run: git config --global user.name "Maximiliano Delgado"
       - name: Use Node.js ${{ matrix.node-version }}
