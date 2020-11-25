@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 <p align="left">
     <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/rudemex/test-react-ghpage/React%20app%20deployement?style=flat-square">
+    <img alt="codecov" src="https://img.shields.io/codecov/c/github/rudemex/test-react-ghpage?style=flat-square">
 </p>
 
 [Demo](https://rudemex.github.io/test-react-ghpage/)
