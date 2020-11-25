@@ -6,17 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  user_name: 'github-actions[bot]'
-  user_email: 'github-actions[bot]@users.noreply.github.com'
-  github_token: ${{ secrets.GIT_CREDENTIALS }}
-  repository: ${{ github.repository }}
-
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: ⚙ Set up Node.js ${{ matrix.node-version }}
+      - name: ⚙ Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -37,3 +31,8 @@ jobs:
           git config --global user.email $user_email
           git remote set-url origin https://${github_token}@github.com/${repository}
           npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.GIT_CREDENTIALS }}
+          repository: ${{ github.repository }}
