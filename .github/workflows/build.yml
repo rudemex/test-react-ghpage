@@ -1,4 +1,4 @@
-name: React app deployement
+name: "React app deployement"
 
 on:
   push:
@@ -10,22 +10,23 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: ⚙ Set up Node.js
+      - name: "⚙ Set up Node.js"
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: ✅ Checkout repository
+      - name: "✅ Checkout repository"
         uses: actions/checkout@v2
 
   build:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: 📦 Install dependencies
+      - uses: actions/checkout@v2
+      - name: "📦 Install dependencies"
         run: npm install
-      - name: 🔨 Build
+      - name: "🔨 Build"
         run: npm run predeploy
-      - name: 🚀 Deploy
+      - name: "🚀 Deploy"
         run: |
           git config --global user.name $user_name
           git config --global user.email $user_email
