@@ -17,8 +17,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "clean": "rm -rf node_modules/gh-pages/.cache",
     "pre:build": "rimraf ./build || true",
-    "predeploy": "npm-run-all -l -s pre:build build",
+    "predeploy": "npm-run-all -l -s clean pre:build build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
