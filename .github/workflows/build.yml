@@ -22,14 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "💾 Restore node_modules from cache"
+      - name: "💾 Restore pacakges from cache"
         uses: actions/cache@v2
         with:
           path: |
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      - name: "📦 Install dependencies"
+      - name: "📦 Install pacakges"
         run: npm install
       - name: "👨‍💻 Run the tests and generate coverage report"
         run: npm test -- --coverage
