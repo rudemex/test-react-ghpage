@@ -3,6 +3,8 @@ name: "React app deployement"
 on:
   push:
     branches: [ master ]
+    tags:
+      - 'v*'
   pull_request:
     branches: [ master ]
 
@@ -20,6 +22,11 @@ jobs:
   build:
     needs: setup
     runs-on: ubuntu-latest
+    env:
+      USER_NAME: 'github-actions[bot]'
+      USER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+      GITHUB_TOKEN: ${{ secrets.GIT_ACTIONS_DEPLOY_ACCESS_TOKEN }}
+      REPOSITORY: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
       - name: "💾 Restore pacakges from cache"
@@ -41,12 +48,18 @@ jobs:
         run: npm run predeploy
       - name: "🚀 Deploy"
         run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin https://${github_token}@github.com/${repository}
+          git config --global user.name $USER_NAME
+          git config --global user.email $USER_EMAIL
+          git remote set-url origin https://${GITHUB_TOKEN}@github.com/${REPOSITORY}
           npm run deploy
-        env:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          github_token: ${{ secrets.GIT_ACTIONS_DEPLOY_ACCESS_TOKEN }}
-          repository: ${{ github.repository }}
+      - name: "🏷 Create Release"
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
