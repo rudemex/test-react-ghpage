@@ -1,4 +1,4 @@
-name: "Deployment React app"
+name: "CI/CD"
 
 on:
   push:
